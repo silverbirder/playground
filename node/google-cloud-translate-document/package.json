@@ -1,0 +1,16 @@
+{
+  "name": "translate",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "silverbirder <silverbirder@gmail.com> (https://silver-birder.github.io)",
+  "license": "ISC",
+  "dependencies": {
+    "@google-cloud/translate": "^6.3.0",
+    "dotenv": "^10.0.0"
+  }
+}
