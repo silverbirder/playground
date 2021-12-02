@@ -4,21 +4,5 @@
      viewBox="0 0 1200 600"
      fill="none"
      xmlns="http://www.w3.org/2000/svg">
-      <foreignObject width="1200" height="600" x="0" y="0">
-        <div xmlns="http://www.w3.org/1999/xhtml">
-            <img xmlns="http://www.w3.org/1999/xhtml" src="https://github.githubassets.com/favicons/favicon.svg" /> Github
-        </div>
-        <div style="width:75%" xmlns="http://www.w3.org/1999/xhtml">
-            Silver-birder/CaAT: CaAT is the Google Apps Script Library that Calculate the Assigned Time in Google Calendar.
-        </div>
-        <a xmlns="http://www.w3.org/1999/xhtml" href="https://github.com/Silver-birder/CaAT">
-          <img width="75%" height="75%" xmlns="http://www.w3.org/1999/xhtml" src="https://opengraph.githubassets.com/37e92638287f2332ae096f05432adb155cd7e320cf0096e3293d1debe956fea5/Silver-birder/CaAT" />
-        </a>
-        <div style="width:75%" xmlns="http://www.w3.org/1999/xhtml">
-          CaAT is the Google Apps Script Library that Calculate the Assigned Time in Google Calendar. - Silver-birder/CaAT: CaAT is the Google Apps Script Library that Calculate the Assigned Time in Google Calendar.
-          <a xmlns="http://www.w3.org/1999/xhtml" href="https://github.com/Silver-birder/CaAT">
-            Read more here.
-          </a>
-        </div>
-    </foreignObject>
+     <image href="https://opengraph.githubassets.com/37e92638287f2332ae096f05432adb155cd7e320cf0096e3293d1debe956fea5/Silver-birder/CaAT" />
 </svg>
