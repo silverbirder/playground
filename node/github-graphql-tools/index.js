@@ -5,8 +5,12 @@ var github = new GithubGraphQLApi({
 })
 github.query(`
 {
-    viewer {
-      login
+    user(login: "Silver-birder") {
+        repositories(first: 20, orderBy: {field: UPDATED_AT, direction: DESC}) {
+            nodes {
+                name
+            }
+        }
     }
 }
 `, null, (res, err) => {
