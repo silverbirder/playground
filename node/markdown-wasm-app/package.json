@@ -1,0 +1,16 @@
+{
+  "name": "markdown-wasm-app",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "silverbirder <silverbirder@gmail.com> (https://silver-birder.github.io/)",
+  "license": "ISC",
+  "dependencies": {
+    "markdown-wasm": "^1.2.0",
+    "serve": "^13.0.2"
+  }
+}
