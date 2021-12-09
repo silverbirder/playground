@@ -27,6 +27,7 @@
   "author": "Google LLC",
   "license": "BSD-3-Clause",
   "dependencies": {
+    "canvas-confetti": "^1.4.0",
     "lit": "^2.0.0"
   },
   "devDependencies": {
@@ -35,6 +36,7 @@
     "@open-wc/testing-karma": "^4.0.9",
     "@rollup/plugin-node-resolve": "^13.0.4",
     "@rollup/plugin-replace": "^3.0.0",
+    "@types/canvas-confetti": "^1.4.2",
     "@types/mocha": "^9.0.0",
     "@web/dev-server": "^0.1.22",
     "@web/dev-server-legacy": "^0.1.4",
