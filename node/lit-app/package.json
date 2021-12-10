@@ -10,6 +10,7 @@
     "build": "tsc",
     "build:watch": "tsc --watch",
     "rollup": "rollup -c rollup.config.js",
+    "rollup:watch": "rollup -c rollup.config.js --watch",
     "serve": "wds --watch",
     "serve:prod": "MODE=prod npm run serve",
     "test": "npm run test:dev && npm run test:prod",
@@ -28,7 +29,9 @@
   "license": "BSD-3-Clause",
   "dependencies": {
     "canvas-confetti": "^1.4.0",
-    "lit": "^2.0.0"
+    "lit": "^2.0.0",
+    "markdown-wasm": "^1.2.0",
+    "monaco-editor": "^0.30.1"
   },
   "devDependencies": {
     "@esm-bundle/chai": "^4.1.5",

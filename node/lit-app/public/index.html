@@ -4,19 +4,25 @@
   <head>
     <meta charset="utf-8" />
     <title>test</title>
+    <link rel="stylesheet"
+      href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/11.3.1/styles/default.min.css">
+    <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/11.3.1/highlight.min.js"></script>
+    <script>hljs.highlightAll();</script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/github-markdown-css@3.0.1/github-markdown.min.css">
     <!-- <script src="../node_modules/@webcomponents/webcomponentsjs/webcomponents-loader.js"></script>
     <script src="../node_modules/lit/polyfill-support.js"></script> -->
     <script type="module" src="./bootstrap.bundled.js"></script>
     <style>
-      p {
-        border: solid 1px blue;
-        padding: 8px;
+      body {
+        /* border: solid 1px blue; */
+        padding: 200px;
       }
     </style>
   </head>
-  <body>
+  <body class="markdown-body">
     <my-element>
       <p>This is child content</p>
     </my-element>
+    <div id="container"></div>
   </body>
 </html>
