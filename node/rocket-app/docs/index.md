@@ -1,18 +1,42 @@
 # Blog
 ## This is my-el
 
-<my-el></my-el>
+<custom-square l="100" c="red"></custom-square>
 
 ```js script
-import { LitElement, html } from 'https://unpkg.com/lit-element?module';
+// import emojiPickerElement from 'https://cdn.skypack.dev/emoji-picker-element';
 
-class MyEl extends LitElement {
-    render() {
-        return html`
-        <h1>Hello, World!</h1>
-        `;
-    }
+class Square extends HTMLElement {
+  static get observedAttributes() {
+    return ['c', 'l'];
+  }
+  constructor() {
+    super();
+    const shadow = this.attachShadow({mode: 'open'});
+    const div = document.createElement('div');
+    const style = document.createElement('style');
+    shadow.appendChild(style);
+    shadow.appendChild(div);
+  }
+
+  connectedCallback() {
+    updateStyle(this);
+  }
+  attributeChangedCallback(name, oldValue, newValue) {
+    updateStyle(this);
+  }
 }
 
-customElements.define('my-el', MyEl);
+customElements.define('custom-square', Square);
+
+function updateStyle(elem) {
+  const shadow = elem.shadowRoot;
+  shadow.querySelector('style').textContent = `
+    div {
+      width: ${elem.getAttribute('l')}px;
+      height: ${elem.getAttribute('l')}px;
+      background-color: ${elem.getAttribute('c')};
+    }
+  `;
+}
 ```
