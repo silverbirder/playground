@@ -1,14 +1,14 @@
 # Blog
 ## This is my-el
 
-<custom-square l="100" c="red"></custom-square>
+<custom-square l="100" c="red" j="index.json"></custom-square>
 
 ```js script
 // import emojiPickerElement from 'https://cdn.skypack.dev/emoji-picker-element';
 
 class Square extends HTMLElement {
   static get observedAttributes() {
-    return ['c', 'l'];
+    return ['c', 'l', 'j'];
   }
   constructor() {
     super();
@@ -24,6 +24,9 @@ class Square extends HTMLElement {
   }
   attributeChangedCallback(name, oldValue, newValue) {
     updateStyle(this);
+    if (name != "j") return;
+    if (oldValue == newValue) return;
+    fetch(`./${this.getAttribute('j')}`).then((r) => { r.json().then((j) => { console.log(j);})})
   }
 }
 
