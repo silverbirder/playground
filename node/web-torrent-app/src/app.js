@@ -9,10 +9,18 @@ app.get('/', (req, res) => {
     const client = new WebTorrent();
     // client.setMaxListeners(15);
     const magnetURI = req.query.magnet_uri;
+    if (!magnetURI) {
+        res.status(200).send('not found magnetURI');
+        return;
+    }
     client.add(magnetURI, { path: process.env.OUTPUT_PATH || './output'}, (torrent) => {
         torrent
             .on('done', () => {
                 console.log('torrent done event');
+                // torrent.files.forEach((file) => {
+                //     console.log(file.name);
+                //     console.log(file.path);
+                // });
                 client.destroy();
             })
             .on('infoHash', () => {
@@ -50,7 +58,7 @@ app.get('/', (req, res) => {
                 // console.log(announceType);
             })
     });
-    res.status(200).send();
+    res.status(200).send('recept magnetURI');
 });
 
 module.exports = app;
