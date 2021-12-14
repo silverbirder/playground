@@ -7,6 +7,7 @@ app.use(express.json());
 
 app.get('/', (req, res) => {
     const client = new WebTorrent();
+    // client.setMaxListeners(15);
     const magnetURI = req.query.magnet_uri;
     client.add(magnetURI, { path: process.env.OUTPUT_PATH || './output'}, (torrent) => {
         torrent
@@ -15,13 +16,13 @@ app.get('/', (req, res) => {
                 client.destroy();
             })
             .on('infoHash', () => {
-                console.log('torrent infoHash event');
+                // console.log('torrent infoHash event');
             })
             .on('metadata', () => {
-                console.log('torrent metadata event');
+                // console.log('torrent metadata event');
             })
             .on('ready', () => {
-                console.log('torrent ready event');
+                // console.log('torrent ready event');
             })
             .on('warning', (err) => {
                 console.log('torrent warning event');
@@ -33,20 +34,20 @@ app.get('/', (req, res) => {
                 client.destroy();
             })
             .on('download', (bytes) => {
-                console.log(`【torrent download event】progress:${torrent.progress},downloaded:${torrent.downloaded},downloadSpeed:${torrent.downloadSpeed}(numPeers:${torrent.numPeers})`);
+                // console.log(`【torrent download event】progress:${torrent.progress},downloaded:${torrent.downloaded},downloadSpeed:${torrent.downloadSpeed}(numPeers:${torrent.numPeers})`);
             })
             .on('upload', (bytes) => {
                 // console.log('torrent upload event');
                 // console.log(bytes);
             })
             .on('wire', (wire, addr) => {
-                console.log('torrent wire event');
+                // console.log('torrent wire event');
                 // console.log(wire);
-                console.log(addr);
+                // console.log(addr);
             })
             .on('noPeers', (announceType) => {
-                console.log('torrent noPeers event');
-                console.log(announceType);
+                // console.log('torrent noPeers event');
+                // console.log(announceType);
             })
     });
     res.status(200).send();
