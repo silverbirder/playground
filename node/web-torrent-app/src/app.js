@@ -7,8 +7,8 @@ app.use(express.json());
 
 app.get('/', (req, res) => {
     const client = new WebTorrent();
-    const magnetURI = process.env.MAGNET_URI;
-    client.add(magnetURI, { path: './output' }, (torrent) => {
+    const magnetURI = req.query.magnet_uri;
+    client.add(magnetURI, { path: process.env.OUTPUT_PATH || './output'}, (torrent) => {
         torrent
             .on('done', () => {
                 console.log('torrent done event');
