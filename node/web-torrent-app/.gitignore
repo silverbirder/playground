@@ -2,3 +2,4 @@ node_modules
 output
 !.gitkeep
 .env
+jwt.keys.json

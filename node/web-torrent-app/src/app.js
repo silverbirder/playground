@@ -1,27 +1,49 @@
 const WebTorrent = require('webtorrent')
+const fs = require('fs');
+const { drive, auth } = require('@googleapis/drive');
+const { JWT } = auth;
+const keys = require('./jwt.keys.json');
+const jwtClient = new JWT(
+    keys.client_email,
+    null,
+    keys.private_key,
+    ['https://www.googleapis.com/auth/drive.file'],
+);
 
 const express = require('express');
 const app = express();
 
 app.use(express.json());
 
-app.get('/', (req, res) => {
+app.get('/', async (req, res) => {
     const client = new WebTorrent();
-    // client.setMaxListeners(15);
     const magnetURI = req.query.magnet_uri;
     if (!magnetURI) {
         res.status(200).send('not found magnetURI');
         return;
     }
-    client.add(magnetURI, { path: process.env.OUTPUT_PATH || './output'}, (torrent) => {
+    await jwtClient.authorize();
+    client.add(magnetURI, { path: process.env.OUTPUT_PATH || './output' }, (torrent) => {
         torrent
-            .on('done', () => {
+            .on('done', async () => {
                 console.log('torrent done event');
-                // torrent.files.forEach((file) => {
-                //     console.log(file.name);
-                //     console.log(file.path);
-                // });
+                const driveService = drive({
+                    version: 'v3',
+                    auth: jwtClient
+                });
+                torrent.files.forEach(async (file) => {
+                    await driveService.files.create({
+                        resource: {
+                            name: file.name,
+                            parents: [process.env.GOOGLE_DRIVE_ID]
+                        },
+                        media: {
+                            body: fs.createReadStream(file.path)
+                        },
+                    });
+                });
                 client.destroy();
+                console.log('client destroy');
             })
             .on('infoHash', () => {
                 // console.log('torrent infoHash event');
