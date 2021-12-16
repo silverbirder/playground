@@ -23,14 +23,38 @@ async fn main() {
     let mut req = File::default();
     let google_drive_id = env::var("GOOGLE_DRIVE_ID").expect("GOOGLE_DRIVE_ID must be set");
     req.parents = Some(vec![google_drive_id]);
-    req.name = Some("main.rs".to_string());
+    req.name = Some("Invoices".to_string());
     hub.files()
         .create(req)
-        .add_scope("https://www.googleapis.com/auth/drive.file")
+        .add_scope("https://www.googleapis.com/auth/drive")
         .upload(
             fs::File::open("./src/main.rs").unwrap(),
-            "application/octet-stream".parse().unwrap(),
+            "application/vnd.google-apps.folder".parse().unwrap(),
         )
         .await
         .expect("failed to upload google drive");
+
+    // let result = hub
+    //     .files()
+    //     .list()
+    //     .add_scope("https://www.googleapis.com/auth/drive")
+    //     // .q("name contains 'xxxx'")
+    //     .doit()
+    //     .await
+    //     .expect("failed to request google drive");
+    // for file in result.1.files.unwrap() {
+    //     println!("{:?}", file.web_content_link);
+    //     println!("{:?}", file.export_links);
+    //     println!("{:?}", file.web_view_link);
+    // }
+
+    // let result = hub
+    //     .files()
+    //     .get("xxxx")
+    //     .param("alt", "media")
+    //     .add_scope("https://www.googleapis.com/auth/drive")
+    //     .acknowledge_abuse(true)
+    //     .doit()
+    //     .await
+    //     .expect("failed to request google drive");
 }
