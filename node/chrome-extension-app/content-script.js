@@ -1,14 +1,23 @@
-// const _sleep = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
+const _sleep = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
 
-// const scrollToBottom = async (distance = 100, delay = 400) => {
-//     while (document.scrollingElement.scrollTop + window.innerHeight < document.scrollingElement.scrollHeight) {
-//         document.scrollingElement.scrollBy(0, distance)
-//         await _sleep(delay);
-//         console.log(document.querySelector('video').getAttribute('src'));
-//     }
-// }
+const port = chrome.runtime.connect({ name: "connection_name" });
+let cacheSrc = '';
 
-// scrollToBottom();
+const scrollToBottom = async (distance = 100, delay = 400) => {
+    while (document.scrollingElement.scrollTop + window.innerHeight < document.scrollingElement.scrollHeight) {
+        document.scrollingElement.scrollBy(0, distance)
+        await _sleep(delay);
+        const videoElement = document.querySelector('video');
+        if (videoElement === null) {
+            continue;
+        }
+        const src = videoElement.getAttribute('src');
+        if (src !== cacheSrc) {
+            console.log(src);
+            port.postMessage({ videoURL: src });
+            cacheSrc = src;
+        }
+    }
+}
 
-var port = chrome.runtime.connect({ name: "knockknock" });
-port.postMessage({ joke: "Knock knock" });
+scrollToBottom();

@@ -1,32 +1,20 @@
 chrome.runtime.onInstalled.addListener(() => {
-  // chrome.tabs.query({ active: true, currentWindow: true }).then((tabs) => {
-  //   const tab = tabs[0];
-  //   chrome.scripting.executeScript({
-  //     target: { tabId: tab.id },
-  //     function: injectedFunction
-  //   });
-  // });
-
-  // chrome.downloads.download(
-  //   {
-  //     url: "",
-  //     filename: "test.mp4"
-  //   },
-  //   (downloadId) => {
-  //     console.log(downloadId);
-  //   },
-  // )
-
-  chrome.runtime.onConnect.addListener(function (port) {
-    console.assert(port.name === "knockknock");
-    port.onMessage.addListener(function (msg) {
-      if (msg.joke === "Knock knock") {
-        console.log(msg);
-      };
+  chrome.runtime.onConnect.addListener((port) => {
+    console.assert(port.name === 'connection_name');
+    port.onMessage.addListener((message) => {
+      const videoURL = message.videoURL;
+      fetch(videoURL).then(async (res) => {
+        const blob = await res.blob();
+        const urlObject = new URL(videoURL);
+        const fileName = `${urlObject.pathname.replace(/\//g, '-')}.mp4`;
+        const form = new FormData();
+        form.append('files', blob);
+        form.append('name', fileName);
+        await fetch("http://localhost:3000", {
+          method: "POST",
+          body: form,
+        });
+      });
     });
   });
 });
-
-// function setPageBackgroundColor() {
-//   console.log('hello');
-// }
