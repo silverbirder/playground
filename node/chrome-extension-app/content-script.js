@@ -1,6 +1,6 @@
 const _sleep = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
 
-const port = chrome.runtime.connect({ name: "connection_name" });
+const port = chrome.runtime.connect({ name: "tiktok" });
 let cacheSrc = '';
 
 const scrollToBottom = async (distance = 100, delay = 400) => {
@@ -12,11 +12,19 @@ const scrollToBottom = async (distance = 100, delay = 400) => {
             continue;
         }
         const src = videoElement.getAttribute('src');
-        if (src !== cacheSrc) {
-            console.log(src);
-            port.postMessage({ videoURL: src });
-            cacheSrc = src;
+        if (src === cacheSrc) {
+            continue;
         }
+        const blob = await (await fetch(src)).blob();
+        const urlObject = new URL(src);
+        const fileName = `${urlObject.pathname.split('/').filter((s) => s != "").join('-')}.mp4`;
+        const form = new FormData();
+        form.append('files', blob, `video-${fileName}`);
+        await fetch("http://localhost:3000", {
+            method: "POST",
+            body: form,
+        });
+        cacheSrc = src;
     }
 }
 

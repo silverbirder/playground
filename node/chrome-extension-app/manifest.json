@@ -3,20 +3,15 @@
   "description": "Build an Extension!",
   "version": "1.0",
   "manifest_version": 3,
-  "background": {
-    "service_worker": "background.js"
-  },
-  "permissions": [
-    "storage", 
-    "activeTab", 
-    "scripting",
-    "downloads",
-    "tabs"
-  ],
+  "permissions": [],
   "content_scripts": [
     {
-      "matches": ["https://*/*"],
-      "js": ["content-script.js"]
+      "matches": [
+        "https://www.tiktok.com/*"
+      ],
+      "js": [
+        "content-script.js"
+      ]
     }
   ],
   "icons": {
