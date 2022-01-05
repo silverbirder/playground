@@ -13,9 +13,12 @@ class OEmbed extends HTMLElement {
   
     async render() {
       const html = `
-      <blockquote class="twitter-tweet" data-dnt="true" align="center"><p lang="ja" dir="ltr">insta360で撮影した動画、Google Driveにあげていて、それをGoogle Photosで直接アップロードできた。(Google Drive から アップロード という選択肢)<br><br>ストレージは、共通しているため、増加なし。</p>— silverbirder (@silver_birder) <a href="https://twitter.com/silver_birder/status/1475622738236944385?ref_src=twsrc%5Etfw">December 28, 2021</a></blockquote><script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+      <div style="transform: scale(2.0);">
+        <blockquote class="tiktok-embed" cite="https://www.tiktok.com/@scout2015/video/6718335390845095173" data-video-id="6718335390845095173" style="max-width: 605px;min-width: 325px;" > <section> <a target="_blank" title="@scout2015" href="https://www.tiktok.com/@scout2015">@scout2015</a> <p>Scramble up ur name & I’ll try to guess it😍❤️ <a title="foryoupage" target="_blank" href="https://www.tiktok.com/tag/foryoupage">#foryoupage</a> <a title="PetsOfTikTok" target="_blank" href="https://www.tiktok.com/tag/PetsOfTikTok">#petsoftiktok</a> <a title="aesthetic" target="_blank" href="https://www.tiktok.com/tag/aesthetic">#aesthetic</a></p> <a target="_blank" title="♬ original sound - tiff" href="https://www.tiktok.com/music/original-sound-6689804660171082501">♬ original sound - tiff</a> </section> </blockquote>
+        <script async src="https://www.tiktok.com/embed.js"></script>
+      </div>
       `;
-      this.shadowRoot.innerHTML = `<iframe srcdoc='${html}'></iframe>`;
+      this.shadowRoot.innerHTML = `<iframe srcdoc='${html}' frameborder="0" scrolling="no" width="100%" height="100%"></iframe>`;
     }
 }
 
