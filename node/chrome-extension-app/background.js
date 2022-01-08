@@ -1,20 +1,28 @@
-// chrome.runtime.onInstalled.addListener(() => {
-//   chrome.runtime.onConnect.addListener((port) => {
-//     console.assert(port.name === 'tiktok');
-//     port.onMessage.addListener((message) => {
-//       const videoURL = message.videoURL;
-//       fetch(videoURL).then(async (res) => {
-//         const blob = await res.blob();
-//         const urlObject = new URL(videoURL);
-//         const fileName = `${urlObject.pathname.split('/').join('-').trim('-')}.mp4`;
-//         const form = new FormData();
-//         form.append('files', blob);
-//         form.append('name', fileName);
-//         await fetch("http://localhost:3000", {
-//           method: "POST",
-//           body: form,
-//         });
-//       });
-//     });
-//   });
-// });
+let _cacheUrl = '';
+chrome.runtime.onInstalled.addListener(() => {
+    chrome.webRequest.onCompleted.addListener(
+        async (details) => {
+            if (!/item_list/.test(details.url)) {
+                return;
+            }
+            if (_cacheUrl === details.url) {
+                return;
+            }
+            const tab = await getCurrentTab();
+            chrome.tabs.sendMessage(tab.id, details, (response) => { });
+            _cacheUrl = details.url;
+        },
+        {
+            urls: [
+                "https://www.tiktok.com/*"
+            ]
+        },
+        ["responseHeaders"]
+    );
+});
+
+const getCurrentTab = async () => {
+    let queryOptions = { active: true, currentWindow: true };
+    let [tab] = await chrome.tabs.query(queryOptions);
+    return tab;
+}
