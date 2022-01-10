@@ -28,23 +28,29 @@ express()
   .use(express.json())
   .use(express.urlencoded({ extended: false }))
   .use(cookieParser())
-  .post('/', upload.array('files', 1), async (req, res, next) => {
-    const uploadResponses = await Promise.all(req.files.map((f) => {
+  .post('/', upload.array('files', 3), async (req, res, next) => {
+    const data = JSON.parse(req.body.data);
+    const files = req.files;
+    const uploadResponses = await Promise.all(files.map((f) => {
       return uploadFile(
         process.env.GOOGLE_CLOUD_STORAGE_BUCKET,
         f.path,
         f.originalname
       )
     }));
-    const publicUrls = uploadResponses.map((u) => {
+    const uploadFiles = uploadResponses.map((u) => {
       const [file, meta] = u;
       const publicUrl = `https://storage.googleapis.com/${process.env.GOOGLE_CLOUD_STORAGE_BUCKET}/${file.id.replace(/\/\d+$/, '')}`;
-      return { 'url': publicUrl, name: file.name, type: file.name.split('-')[0] }
+      const splitFileName = file.name.split('-');
+      const typeName = splitFileName.slice(0, splitFileName.length - 1).join('-');
+      const result = {};
+      result[typeName] = publicUrl;
+      return result;
     })
-
-    const params = {};
-    params['public_urls'] = publicUrls;
-    console.log(params);
+    const params = data;
+    uploadFiles.map((u) => {
+      Object.assign(params, u);
+    })
     await uploadDoc(
       process.env.GOOGLE_CLOUD_FIRESTORE_COLLECTION,
       params,

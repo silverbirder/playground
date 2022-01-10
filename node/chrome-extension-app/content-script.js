@@ -28,18 +28,19 @@ const injectScript = (filePath, tag) => {
 
 const _sleep = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
 
-const process = (data) => {
-    console.log(data);
-    // const blob = await (await fetch(src)).blob();
-    // const urlObject = new URL(src);
-    // const fileName = `${urlObject.pathname.split('/').filter((s) => s != "").join('-')}.mp4`;
-    // const form = new FormData();
-    // form.append('files', blob, `video-${fileName}`);
-    // await fetch("http://localhost:3000", {
-    //     method: "POST",
-    //     body: form,
-    // });
-    // });
+const process = (items) => {
+    Promise.all(items.map(async (i) => {
+        const downloadAddrBlob = await (await fetch(i.video.downloadAddr)).blob();
+        const coverBlob = await (await fetch(i.video.cover)).blob();
+        const form = new FormData();
+        form.append('files', downloadAddrBlob, `video-downloadAddr-${i.video.id}.mp4`);
+        form.append('files', coverBlob, `video-cover-${i.video.id}.png`);
+        form.append('data', JSON.stringify(i));
+        return fetch("http://localhost:3000", {
+            method: "POST",
+            body: form
+        })
+    }))
 }
 
 const scrollToBottom = async (distance = 100, delay = 400) => {
