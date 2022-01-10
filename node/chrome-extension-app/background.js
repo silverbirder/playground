@@ -5,11 +5,16 @@ chrome.runtime.onInstalled.addListener(() => {
             if (!/item_list/.test(details.url)) {
                 return;
             }
+            console.log('found item_list request');
+            console.log(details.url);
             if (_cacheUrl === details.url) {
+                console.log('cached! details.url');
                 return;
             }
             const tab = await getCurrentTab();
+            // バックグラウンドからコンテンツスクリプトに送信するためにはタブ経由である必要がある
             chrome.tabs.sendMessage(tab.id, details, (response) => { });
+            // コンテンツスクリプトから同じurlでfetchしてループするので、キャッシュし弾くようにする。
             _cacheUrl = details.url;
         },
         {
@@ -17,12 +22,14 @@ chrome.runtime.onInstalled.addListener(() => {
                 "https://www.tiktok.com/*"
             ]
         },
+        // 必要ないけど、色々ヘッダーつくので追加
         ["responseHeaders"]
     );
 });
 
 const getCurrentTab = async () => {
-    let queryOptions = { active: true, currentWindow: true };
-    let [tab] = await chrome.tabs.query(queryOptions);
-    return tab;
+    const queryOptions = { url: ["https://www.tiktok.com/*"] };
+    const tabs = await chrome.tabs.query(queryOptions);
+    const activeTabs = tabs.filter((t) => t.active === true)
+    return activeTabs.length > 0 ? activeTabs[0] : tabs[0];
 }

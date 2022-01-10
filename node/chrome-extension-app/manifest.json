@@ -5,7 +5,8 @@
   "manifest_version": 3,
   "permissions": [
     "webRequest",
-    "tabs"
+    "tabs",
+    "storage"
   ],
   "host_permissions": [
     "https://*/*"
@@ -28,5 +29,15 @@
     "32": "/images/get_started32.png",
     "48": "/images/get_started48.png",
     "128": "/images/get_started128.png"
-  }
+  },
+  "web_accessible_resources": [
+    {
+      "resources": [
+        "web_accessible_resources.js"
+      ],
+      "matches": [
+        "https://*.tiktok.com/*"
+      ]
+    }
+  ]
 }
