@@ -1,3 +1,6 @@
+import dotenv from 'dotenv';
+dotenv.config();
+
 import nodeResolve from '@rollup/plugin-node-resolve';
 import babel from '@rollup/plugin-babel';
 import html from '@web/rollup-plugin-html';
@@ -5,7 +8,7 @@ import { importMetaAssets } from '@web/rollup-plugin-import-meta-assets';
 import { terser } from 'rollup-plugin-terser';
 import { generateSW } from 'rollup-plugin-workbox';
 import path from 'path';
-import dotenv from 'rollup-plugin-dotenv';
+import replace from '@rollup/plugin-replace';
 
 export default {
   input: 'index.html',
@@ -19,7 +22,9 @@ export default {
   preserveEntrySignatures: false,
 
   plugins: [
-    dotenv(),
+    replace({
+      'process.env.HOGE': `"${process.env.HOGE}"`,
+    }),
     /** Enable using HTML as rollup entrypoint */
     html({
       minify: true,
