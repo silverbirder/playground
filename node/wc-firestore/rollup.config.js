@@ -23,7 +23,8 @@ export default {
 
   plugins: [
     replace({
-      'process.env.HOGE': `"${process.env.HOGE}"`,
+      'process.env.FIREBASE_API_KEY': `"${process.env.FIREBASE_API_KEY}"`,
+      'process.env.FIREBASE_PROJECT_ID': `"${process.env.FIREBASE_PROJECT_ID}"`,
     }),
     /** Enable using HTML as rollup entrypoint */
     html({

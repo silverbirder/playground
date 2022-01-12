@@ -26,7 +26,8 @@ export default /** @type {import('@web/dev-server').DevServerConfig} */ ({
 
   plugins: [
     replace({
-      'process.env.HOGE': `"${process.env.HOGE}"`,
+      'process.env.FIREBASE_API_KEY': `"${process.env.FIREBASE_API_KEY}"`,
+      'process.env.FIREBASE_PROJECT_ID': `"${process.env.FIREBASE_PROJECT_ID}"`,
     }),
     /** Use Hot Module Replacement by uncommenting. Requires @open-wc/dev-server-hmr plugin */
     // hmr && hmrPlugin({ exclude: ['**/*/node_modules/**/*'], presets: [presets.litElement] }),
