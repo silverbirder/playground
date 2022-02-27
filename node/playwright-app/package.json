@@ -7,12 +7,15 @@
     "test": "playwright test",
     "test:headed": "playwright test --headed",
     "test:chromium": " playwright test --project=chromium",
-    "report": "playwright show-report"
+    "test:line": "playwright test tests/example.spec.ts:71",
+    "report": "playwright show-report",
+    "codegen": "playwright codegen"
   },
   "keywords": [],
   "author": "silverbirder <silverbirder@gmail.com> (https://silver-birder.github.io/)",
   "license": "ISC",
   "devDependencies": {
-    "@playwright/test": "^1.19.2"
+    "@playwright/test": "^1.19.2",
+    "dotenv": "^16.0.0"
   }
 }
