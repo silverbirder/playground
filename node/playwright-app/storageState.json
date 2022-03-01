@@ -1,0 +1,14 @@
+{
+  "cookies": [],
+  "origins": [
+    {
+      "origin": "https://demo.playwright.dev",
+      "localStorage": [
+        {
+          "name": "react-todos",
+          "value": "[{\"id\":\"599ad544-ff37-4f4e-85c4-3cf76d46b998\",\"title\":\"buy some cheese\",\"completed\":false},{\"id\":\"91e702ba-c7b0-4597-8902-dd537f721e04\",\"title\":\"feed the cat\",\"completed\":false}]"
+        }
+      ]
+    }
+  ]
+}

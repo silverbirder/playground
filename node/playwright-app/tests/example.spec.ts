@@ -11,7 +11,9 @@ const TODO_ITEMS = [
 ];
 
 test.describe('New Todo', () => {
+  // test.use({ storageState: 'storageState.json' });
   test('should allow me to add todo items', async ({ page }) => {
+
     // Create 1st todo.
     await page.locator('.new-todo').fill(TODO_ITEMS[0]);
     await page.locator('.new-todo').press('Enter');
@@ -32,6 +34,7 @@ test.describe('New Todo', () => {
     ]);
 
     await checkNumberOfTodosInLocalStorage(page, 2);
+    await page.context().storageState({ path: 'storageState.json' });
   });
 });
 
