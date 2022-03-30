@@ -1,0 +1,7 @@
+POST http://localhost:3000
+Content-Type: application/json
+@./targets/bodies/body1.json
+
+POST http://localhost:3000
+Content-Type: application/json
+@./targets/bodies/body2.json
