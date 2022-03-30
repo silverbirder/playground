@@ -26,3 +26,11 @@ $ cat targets/targets.txt | vegeta attack -rate=10/s -workers=2 | vegeta encode 
           latency.p95+latency.p50+latency.p25 \
           bytes_in.sum+bytes_out.sum
 ```
+
+## Tips
+
+```shell
+# dynamic post bodies
+# @see: https://github.com/tsenart/vegeta/issues/330#issuecomment-416705010
+$ jq -ncM 'while(true; .+1) | {method: "POST", url: "http://localhost:3000", body: {id: . } | @base64}' | vegeta attack -lazy --format=json -rate=10/s -workers=2 -header='Content-Type: application/json' | vegeta encode
+```
