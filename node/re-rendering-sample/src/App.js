@@ -39,7 +39,7 @@ function App() {
   }, [cnt, items]);
   const updateItems = useCallback(
     (propItem) => {
-      const newItems = [...items].map((item) => {
+      const newItems = items.map((item) => {
         if (item.id === propItem.id) {
           return propItem;
         } else {
