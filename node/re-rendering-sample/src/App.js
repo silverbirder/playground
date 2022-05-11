@@ -2,14 +2,11 @@ import React, { useState, memo, useCallback } from "react";
 
 const Item = memo(({ item, updateItems }) => {
   console.log(`render Item (id:${item.id})`, { item });
-  const onChange = useCallback(
-    (e) => {
-      const newItem = { ...item };
-      newItem.text = e.target.value;
-      updateItems(newItem);
-    },
-    [item, updateItems]
-  );
+  const onChange = (e) => {
+    const newItem = { ...item };
+    newItem.text = e.target.value;
+    updateItems(newItem);
+  };
   return (
     <li>
       {item.id}:
@@ -33,10 +30,10 @@ function App() {
   console.log("render App");
   const [cnt, setCnt] = useState(1);
   const [items, setItems] = useState([{ id: cnt, text: "" }]);
-  const onClick = useCallback(() => {
+  const onClick = () => {
     setCnt(cnt + 1);
     setItems([...items, { id: cnt + 1, text: "" }]);
-  }, [cnt, items]);
+  };
   const updateItems = useCallback(
     (propItem) => {
       const newItems = items.map((item) => {
