@@ -1,19 +1,30 @@
 import React, { useState, memo, useCallback } from "react";
 
+const isItemEqual = (prevProps, nextProps) => {
+  return JSON.stringify(prevProps.item) === JSON.stringify(nextProps.item);
+};
+
+const InputCell = memo(({ text, onChange }) => {
+  console.log(`render InputCell (text:${text})`);
+  return <input type="text" value={text} onChange={onChange}></input>;
+});
+
 const Item = memo(({ item, updateItems }) => {
   console.log(`render Item (id:${item.id})`, { item });
-  const onChange = (e) => {
-    const newItem = { ...item };
-    newItem.text = e.target.value;
-    updateItems(newItem);
-  };
+  const onChange = useCallback(
+    (e) => {
+      const newItem = { ...item, text: e.target.value };
+      updateItems(newItem);
+    },
+    [item, updateItems]
+  );
   return (
     <li>
       {item.id}:
-      <input type="text" value={item.text} onChange={onChange}></input>
+      <InputCell text={item.text} onChange={onChange} />
     </li>
   );
-});
+}, isItemEqual);
 
 const Items = memo(({ items, updateItems }) => {
   console.log("render Items", { items });
@@ -29,10 +40,12 @@ const Items = memo(({ items, updateItems }) => {
 function App() {
   console.log("render App");
   const [cnt, setCnt] = useState(1);
-  const [items, setItems] = useState([{ id: cnt, text: "" }]);
+  const [items, setItems] = useState([{ id: Number(cnt), text: "" }]);
   const onClick = () => {
     setCnt(cnt + 1);
-    setItems([...items, { id: cnt + 1, text: "" }]);
+    const newItems = [...items];
+    newItems.push({ id: newItems.length + 1, text: "" });
+    setItems(newItems);
   };
   const updateItems = useCallback(
     (propItem) => {
