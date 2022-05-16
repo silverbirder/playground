@@ -1,13 +1,9 @@
 import React, { useState, memo, useCallback } from "react";
 
-const isEqual = (prevProps, nextProps) => {
-  return JSON.stringify(prevProps) === JSON.stringify(nextProps);
-};
-
 const InputCell = memo(({ text, onChange }) => {
   console.log(`render InputCell (text:${text})`);
   return <input type="text" value={text} onChange={onChange}></input>;
-}, isEqual);
+});
 
 const Item = memo(({ item, setItem }) => {
   console.log(`render Item (id:${item.id})`, { item });
@@ -26,7 +22,7 @@ const Item = memo(({ item, setItem }) => {
       </li>
     </>
   );
-}, isEqual);
+});
 
 const Items = memo(({ items, setItems }) => {
   console.log("render Items", { items });
@@ -47,7 +43,7 @@ const Items = memo(({ items, setItems }) => {
       </ul>
     </>
   );
-}, isEqual);
+});
 
 const App = React.memo(() => {
   console.log("render App");
