@@ -7,7 +7,10 @@
     "serve": "npm-run-all -p serve:*",
     "serve:main": "webpack serve",
     "serve:team-search": "npm run -w packages/team-search serve -- --no-open",
-    "serve:team-content": "npm run -w packages/team-content serve -- --no-open"
+    "serve:team-content": "npm run -w packages/team-content serve -- --no-open",
+    "setup": "npm-run-all -p install:*",
+    "install:team-search": "cd packages/team-search && npm install",
+    "install:team-content": "cd packages/team-content && npm install"
   },
   "keywords": [],
   "author": "silverbirder <silverbirder@gmail.com> (https://silver-birder.github.io/)",
