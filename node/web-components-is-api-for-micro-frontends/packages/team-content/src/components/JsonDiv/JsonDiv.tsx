@@ -8,7 +8,7 @@ export class JsonDiv extends HTMLElement {
   }
 
   attributeChangedCallback() {
-    const value = this.getAttribute("value") as string;
+    const value = this.getAttribute("value") || ("{}" as string);
     const props = { json: value };
     if (this.root) {
       this.root.render(<App {...props} />);
@@ -16,10 +16,7 @@ export class JsonDiv extends HTMLElement {
   }
 
   connectedCallback() {
-    if (!this.hasAttribute("value")) {
-      throw new Error("Nothing attributes: value");
-    }
-    const value = this.getAttribute("value") as string;
+    const value = this.getAttribute("value") || ("{}" as string);
     const props = { json: value };
     const mountPoint = document.createElement("span");
     this.attachShadow({ mode: "open" }).appendChild(mountPoint);

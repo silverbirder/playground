@@ -25,7 +25,7 @@ const App = () => {
   return (
     <>
       <search-button />
-      <json-div value="{}" />
+      <json-div />
     </>
   );
 };
