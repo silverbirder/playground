@@ -5,7 +5,7 @@ const App = () => {
   const customElement = useContext(CustomElementContext);
   const onClick = () => {
     customElement.dispatchEvent(
-      new CustomEvent("searchButtonClick", { detail: { num: Math.random() } })
+      new CustomEvent("search", { detail: { num: Math.random() } })
     );
   };
   return <button onClick={onClick}>Search</button>;

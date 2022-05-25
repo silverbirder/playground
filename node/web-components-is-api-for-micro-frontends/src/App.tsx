@@ -3,9 +3,9 @@ import { useEffect } from "react";
 const App = () => {
   useEffect(() => {
     import("content/App").then((module) => {
-      const { JsonView } = module;
-      if (customElements.get("json-view") === undefined) {
-        customElements.define("json-view", JsonView);
+      const { JsonDiv } = module;
+      if (customElements.get("json-div") === undefined) {
+        customElements.define("json-div", JsonDiv);
       }
     });
     import("search/App").then((module) => {
@@ -14,12 +14,10 @@ const App = () => {
         customElements.define("search-button", SearchButton);
       }
       const SearchButtonElement = document.querySelector("search-button");
-      SearchButtonElement?.addEventListener("searchButtonClick", ((
-        e: CustomEvent
-      ) => {
+      SearchButtonElement?.addEventListener("search", ((e: CustomEvent) => {
         document
-          .querySelector("json-view")
-          ?.setAttribute("json", JSON.stringify(e.detail));
+          .querySelector("json-div")
+          ?.setAttribute("value", JSON.stringify(e.detail));
       }) as EventListener);
     });
   }, []);
@@ -27,7 +25,7 @@ const App = () => {
   return (
     <>
       <search-button />
-      <json-view json="{}" />
+      <json-div value="{}" />
     </>
   );
 };

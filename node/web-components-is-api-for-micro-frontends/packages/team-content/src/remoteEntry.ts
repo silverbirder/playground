@@ -1,1 +1,1 @@
-export { JsonView } from "./components/JsonView/JsonView";
+export { JsonDiv } from "./components/JsonDiv/JsonDiv";

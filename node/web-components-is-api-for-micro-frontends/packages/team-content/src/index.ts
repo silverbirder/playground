@@ -1,3 +1,3 @@
-import { JsonView } from "./components/JsonView/JsonView";
+import { JsonDiv } from "./components/JsonDiv/JsonDiv";
 
-customElements.define("json-view", JsonView);
+customElements.define("json-div", JsonDiv);

@@ -5,8 +5,8 @@ declare namespace JSX {
 }
 
 declare module "content/App" {
-  const JsonView: CustomElementConstructor;
-  export { JsonView };
+  const JsonDiv: CustomElementConstructor;
+  export { JsonDiv };
 }
 
 declare module "search/App" {

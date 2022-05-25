@@ -5,5 +5,12 @@
   </head>
   <body>
     <search-button />
+    <script async>
+      document
+        .querySelector("search-button")
+        .addEventListener("search", (e) => {
+          console.log({ e });
+        });
+    </script>
   </body>
 </html>

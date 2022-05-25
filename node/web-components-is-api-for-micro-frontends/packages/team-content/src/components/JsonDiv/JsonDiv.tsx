@@ -1,26 +1,26 @@
 import ReactDOM from "react-dom/client";
 import App from "./App";
 
-export class JsonView extends HTMLElement {
+export class JsonDiv extends HTMLElement {
   root: ReactDOM.Root | undefined;
   static get observedAttributes() {
-    return ["json"];
+    return ["value"];
   }
 
   attributeChangedCallback() {
-    const json = this.getAttribute("json") as string;
-    const props = { json: json };
+    const value = this.getAttribute("value") as string;
+    const props = { json: value };
     if (this.root) {
       this.root.render(<App {...props} />);
     }
   }
 
   connectedCallback() {
-    if (!this.hasAttribute("json")) {
-      throw new Error("Nothing attributes: json");
+    if (!this.hasAttribute("value")) {
+      throw new Error("Nothing attributes: value");
     }
-    const json = this.getAttribute("json") as string;
-    const props = { json: json };
+    const value = this.getAttribute("value") as string;
+    const props = { json: value };
     const mountPoint = document.createElement("span");
     this.attachShadow({ mode: "open" }).appendChild(mountPoint);
     this.root = ReactDOM.createRoot(mountPoint as HTMLElement);
