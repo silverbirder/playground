@@ -1,4 +1,3 @@
-import { useEffect } from "react";
 import { useFetcher } from "./hooks/useFetcher";
 
 export type LoadJsonProps = {
