@@ -1,10 +1,10 @@
-import { IncrementButton } from "./components/IncrementButton";
+import { CounterButton } from "./components/CounterButton";
 import { Hello } from "./components/Hello";
 
 function App() {
   return (
     <>
-      <IncrementButton />
+      <CounterButton />
       <Hello />
     </>
   );
