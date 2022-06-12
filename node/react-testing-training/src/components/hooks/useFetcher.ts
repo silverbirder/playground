@@ -1,4 +1,4 @@
-import { useCallback, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 
 export type useFetcherArgs = {
   src: string;
@@ -23,5 +23,10 @@ export const useFetcher = (args: useFetcherArgs): useFetcherType => {
       setLoading(false);
     }
   }, [src]);
+
+  useEffect(() => {
+    request();
+  }, [request]);
+
   return { loading, request, response };
 };
