@@ -1,65 +1,45 @@
-import React, { useState, memo, useCallback } from "react";
+import React, { useState } from "react";
 
-const InputCell = memo(({ text, onChange }) => {
-  console.log(`render InputCell (text:${text})`);
+const Item = ({ text, uuid, setItem }) => {
+  console.log(`render Item (id:${uuid})`, { text, uuid });
+  const onChange = (e) => setItem({ uuid, text: e.target.value });
   return <input type="text" value={text} onChange={onChange}></input>;
-}, (prev, next) => JSON.stringify(prev.text) === JSON.stringify(next.text) && prev.onChange === next.onChange);
+};
 
-const Item = memo(({ item, setItem }) => {
-  console.log(`render Item (id:${item.id})`, { item });
-  const onChange = useCallback(
-    (e) => {
-      const newItem = {...item};
-      newItem.text = e.target.value;
-      setItem(newItem);
-    },
-    [item, setItem]
-  );
-  return (
-    <>
-      <li>
-        {item.id}:
-        <InputCell text={item.text} onChange={onChange} />
-      </li>
-    </>
-  );
-}, (prev, next) => JSON.stringify(prev.item) === JSON.stringify(next.item) && prev.setItem === next.setItem);
-
-const Items = memo(({ items, setItems }) => {
+const Items = ({ items, setItems }) => {
   console.log("render Items", { items });
-  const setItem = useCallback(
-    (item) => {
-      const newItems = items.map((item) => ({...item}));
-      newItems[item.id - 1] = {...item};
-      setItems(newItems);
-    },
-    [items, setItems]
-  );
+  const setItem = (newItem, index) => {
+    const newItems = items.slice();
+    newItems[index] = newItem;
+    setItems(newItems);
+  };
   return (
     <>
-      <ul>
-        {items.map((item) => (
-          <Item item={item} key={item.id} setItem={setItem} />
-        ))}
-      </ul>
+      {items.map((item, index) => (
+        <Item
+          text={item.text}
+          uuid={item.uuid}
+          key={item.uuid}
+          setItem={(newItem) => setItem(newItem, index)}
+        />
+      ))}
     </>
   );
-},  (prev, next) => JSON.stringify(prev.items) === JSON.stringify(next.items));
+};
 
 const App = () => {
   console.log("render App");
-  const [cnt, setCnt] = useState(1);
-  const [items, setItems] = useState([{ id: Number(cnt), text: "" }]);
-  const onClick = useCallback(() => {
-    setCnt(cnt + 1);
-    const newItems = items.map((item) => ({...item}));
-    newItems.push({ id: items.length + 1, text: "" });
+  const [items, setItems] = useState(
+    [...Array(1000)].map(() => ({ text: "", uuid: Math.random() }))
+  );
+  const onClick = () => {
+    const newItems = items.slice();
+    newItems.push({ text: "", uuid: Math.random() });
     setItems(newItems);
-  }, [cnt, items]);
+  };
   return (
     <>
-      {cnt}
-      <br />
+      {items.length}
       <button onClick={onClick}>button</button>
       <br />
       <Items items={items} setItems={setItems} />
