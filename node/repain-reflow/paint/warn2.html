@@ -1,3 +1,4 @@
+<img src="./loading.gif" style="position: fixed; top: 100px; left: 100px" />
 <button id="btn">click</button>
 <div id="root"></div>
 <template id="template">
@@ -11,10 +12,11 @@
     root.appendChild(template.content.cloneNode(true))
   );
   const forceRedraw = (el) => {
-    el.style.display = "none";
-    el.offsetHeight;
+    // el.style.display = "none";
+    el.style.left = "100px";
+    // el.offsetHeight;
     setTimeout(() => {
-      el.style.display = "";
+      el.style.left = "";
     }, 20);
   };
   document.getElementById("btn").addEventListener("click", () => {

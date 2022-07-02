@@ -1,8 +1,14 @@
+<style>
+    .hoge {
+        transform: scale(0.1);
+    }
+</style>
 <button>click</button>
 <script>
   const b = document.querySelector("button");
   b.addEventListener("click", () => {
-    b.setAttribute("style", `display: none;`);
-    console.log(b.clientWidth);
+    b.classList.add("hoge");
+    // console.log(b.clientWidth);
   });
+</script>
 </script>
