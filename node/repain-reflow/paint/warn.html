@@ -1,0 +1,8 @@
+<button>click</button>
+<script>
+  const b = document.querySelector("button");
+  b.addEventListener("click", () => {
+    b.setAttribute("style", `display: none;`);
+    console.log(b.clientWidth);
+  });
+</script>

@@ -1,0 +1,22 @@
+<button id="btn">click</button>
+<div id="root"></div>
+<template id="template">
+  <div style="position: relative">hello</div>
+</template>
+
+<script>
+  const root = document.getElementById("root");
+  const template = document.getElementById("template");
+  [...Array(100)].forEach(() =>
+    root.appendChild(template.content.cloneNode(true))
+  );
+
+  document.getElementById("btn").addEventListener("click", () => {
+    setInterval(() => {
+      document.querySelectorAll("div").forEach((el) => {
+        el.style.left =
+          (Math.sin(el.offsetTop + Date.now() / 1000) + 1) * 500 + "px";
+      });
+    }, 100);
+  });
+</script>

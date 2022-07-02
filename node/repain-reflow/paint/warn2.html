@@ -1,0 +1,25 @@
+<button id="btn">click</button>
+<div id="root"></div>
+<template id="template">
+  <div style="position: relative">hello</div>
+</template>
+
+<script>
+  const root = document.getElementById("root");
+  const template = document.getElementById("template");
+  [...Array(1000)].forEach(() =>
+    root.appendChild(template.content.cloneNode(true))
+  );
+  const forceRedraw = (el) => {
+    el.style.display = "none";
+    el.offsetHeight;
+    setTimeout(() => {
+      el.style.display = "";
+    }, 20);
+  };
+  document.getElementById("btn").addEventListener("click", () => {
+    setInterval(() => {
+      document.querySelectorAll("div").forEach(forceRedraw);
+    }, 100);
+  });
+</script>
