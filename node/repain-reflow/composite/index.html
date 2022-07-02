@@ -1,0 +1,40 @@
+<style>
+  @keyframes return {
+    50% {
+      transform: translateX(200px);
+    }
+    100% {
+      transform: translateX(0px);
+    }
+    /* 50% {
+      left: 200px;
+    }
+    100% {
+      left: 0px;
+    } */
+  }
+
+  .box {
+    position: relative;
+    width: 100px;
+    height: 100px;
+    left: 0px;
+    border: 1px solid black;
+    /* will-change: transform; */
+  }
+  .trans {
+    animation-name: return;
+    animation-duration: 2s;
+    animation-iteration-count: infinite;
+    animation-timing-function: ease;
+  }
+</style>
+<button class="btn">click</button>
+<div class="box">Hello World</div>
+<script>
+  const box = document.querySelector(".box");
+  const btn = document.querySelector(".btn");
+  btn.addEventListener("click", () => {
+    box.classList.add("trans");
+  });
+</script>
