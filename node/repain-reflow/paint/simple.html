@@ -1,17 +1,17 @@
 <style>
   @keyframes return {
-    50% {
+    /* 50% {
       transform: translateX(200px);
     }
     100% {
       transform: translateX(0px);
-    }
-    /* 50% {
+    } */
+    50% {
       left: 200px;
     }
     100% {
       left: 0px;
-    } */
+    }
   }
 
   .box {
@@ -29,12 +29,9 @@
     animation-timing-function: ease;
   }
 </style>
-<button class="btn">click</button>
-<div class="box">Hello World</div>
+<div class="box trans"></div>
 <script>
   const box = document.querySelector(".box");
   const btn = document.querySelector(".btn");
-  btn.addEventListener("click", () => {
-    box.classList.add("trans");
-  });
+  btn.addEventListener("click", () => box.classList.add("trans"));
 </script>

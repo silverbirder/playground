@@ -1,34 +1,52 @@
+<style>
+  @keyframes return {
+    /* 50% {
+      transform: translateX(200px);
+    }
+    100% {
+      transform: translateX(0px);
+    } */
+    50% {
+      left: 200px;
+    }
+    100% {
+      left: 0px;
+    }
+  }
+
+  .box {
+    position: relative;
+    width: 100px;
+    height: 100px;
+    left: 0px;
+    border: 1px solid black;
+    /* will-change: transform; */
+  }
+  .trans {
+    animation-name: return;
+    animation-duration: 2s;
+    animation-iteration-count: infinite;
+    animation-timing-function: ease;
+  }
+</style>
+
 <button id="btn">click</button>
 <div id="root"></div>
 <template id="template">
-  <div style="position: relative">hello</div>
+  <div class="box"></div>
 </template>
 
 <script>
   const root = document.getElementById("root");
   const template = document.getElementById("template");
-  [...Array(1000)].forEach(() =>
+  [...Array(5)].forEach(() =>
     root.appendChild(template.content.cloneNode(true))
   );
-  const forceRedraw = (element) => {
-    if (!element) {
-      return;
-    }
-
-    const n = document.createTextNode(" ");
-    const disp = element.style.display;
-
-    element.appendChild(n);
-    element.style.display = "none";
-
-    setTimeout(function () {
-      element.style.display = disp;
-      n.parentNode.removeChild(n);
-    }, 20);
-  };
   document.getElementById("btn").addEventListener("click", () => {
-    setInterval(() => {
-      document.querySelectorAll("div").forEach(forceRedraw);
-    }, 100);
+    document.querySelectorAll("div").forEach((el) => {
+      setTimeout(() => {
+        el.classList.add("trans");
+      }, Math.random() * 1000);
+    });
   });
 </script>
