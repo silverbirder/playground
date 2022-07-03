@@ -11,12 +11,20 @@
   [...Array(1000)].forEach(() =>
     root.appendChild(template.content.cloneNode(true))
   );
-  const forceRedraw = (el) => {
-    // el.style.display = "none";
-    el.style.left = "100px";
-    // el.offsetHeight;
-    setTimeout(() => {
-      el.style.left = "";
+  const forceRedraw = (element) => {
+    if (!element) {
+      return;
+    }
+
+    const n = document.createTextNode(" ");
+    const disp = element.style.display;
+
+    element.appendChild(n);
+    element.style.display = "none";
+
+    setTimeout(function () {
+      element.style.display = disp;
+      n.parentNode.removeChild(n);
     }, 20);
   };
   document.getElementById("btn").addEventListener("click", () => {
