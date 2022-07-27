@@ -1,0 +1,8 @@
+type Pokemon {
+  id: Int
+  name: String
+}
+
+type Query {
+  pokemons(limit: Int): [Pokemon]
+}
