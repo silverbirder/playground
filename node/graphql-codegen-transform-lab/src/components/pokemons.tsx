@@ -16,9 +16,11 @@ const PokemonsComponent = () => {
       {data &&
         data?.pokemons?.map((p: Pokemon | null) => {
           return (
-            <li key={p?.id}>
-              <div>{p?.name}</div>
-            </li>
+            p && (
+              <li key={p.id}>
+                <div>{p.name}</div>
+              </li>
+            )
           );
         })}
     </ul>
