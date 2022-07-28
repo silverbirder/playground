@@ -1,4 +1,5 @@
 import { Pokemon } from "../../graphql-client/generated/graphql";
+import withSuspense from "../withSuspense";
 import { usePokemonsQuery } from "./hooks/usePokemonsQuery";
 
 const PokemonsComponent = () => {
@@ -15,4 +16,4 @@ const PokemonsComponent = () => {
   );
 };
 
-export default PokemonsComponent;
+export default withSuspense(PokemonsComponent);

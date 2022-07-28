@@ -1,3 +1,4 @@
+import withSuspense from "../withSuspense";
 import { usePokemonQuery } from "./hooks/usePokemonQuery";
 
 const PokemonComponent = () => {
@@ -14,4 +15,4 @@ const PokemonComponent = () => {
   );
 };
 
-export default PokemonComponent;
+export default withSuspense(PokemonComponent);

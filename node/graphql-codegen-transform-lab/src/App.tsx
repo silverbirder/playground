@@ -1,17 +1,7 @@
-import { Suspense } from "react";
-import PokemonsComponent from "./ui/pokemons";
-import PokemonComponent from "./ui/pokemon";
+import Home from "./pages/home";
 
 function App() {
-  return (
-    <>
-      <p>Hello World</p>
-      <Suspense fallback={<div>Loading ...</div>}>
-        <PokemonsComponent />
-        <PokemonComponent />
-      </Suspense>
-    </>
-  );
+  return <Home />;
 }
 
 export default App;
