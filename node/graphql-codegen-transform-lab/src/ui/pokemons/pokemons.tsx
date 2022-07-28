@@ -1,5 +1,5 @@
-import { Pokemon } from "../graphql-client/generated/graphql";
-import { usePokemonsQuery } from "./usePokemonsQuery";
+import { Pokemon } from "../../graphql-client/generated/graphql";
+import { usePokemonsQuery } from "./hooks/usePokemonsQuery";
 
 const PokemonsComponent = () => {
   const { pokemons } = usePokemonsQuery();
@@ -15,4 +15,4 @@ const PokemonsComponent = () => {
   );
 };
 
-export { PokemonsComponent };
+export default PokemonsComponent;

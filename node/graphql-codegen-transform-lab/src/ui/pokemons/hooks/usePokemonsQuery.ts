@@ -3,7 +3,7 @@ import {
   Pokemon,
   Pokemons,
   PokemonsQuery,
-} from "../graphql-client/generated/graphql";
+} from "../../../graphql-client/generated/graphql";
 
 const transform = (
   pokemons: Array<Pokemon | null> | null | undefined

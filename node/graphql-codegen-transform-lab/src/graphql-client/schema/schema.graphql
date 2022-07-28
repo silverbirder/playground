@@ -5,4 +5,5 @@ type Pokemon {
 
 type Query {
   pokemons(limit: Int): [Pokemon]
+  pokemon(id: String): Pokemon
 }

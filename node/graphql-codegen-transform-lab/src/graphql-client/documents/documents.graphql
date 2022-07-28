@@ -4,3 +4,10 @@ query Pokemons {
     name
   }
 }
+
+query Pokemon {
+  pokemon(id: "001") {
+    id
+    name
+  }
+}
