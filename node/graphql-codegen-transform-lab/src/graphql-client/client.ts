@@ -6,9 +6,12 @@ const wrapFetch = async (
   input: RequestInfo | URL,
   init?: RequestInit
 ): Promise<Response> => {
-  const secound =
-    init && init.body && /pokemons/.test(init.body.toString()) ? 1 : 3;
-  await sleep(1000 * secound);
+  // const requestName =
+  //   init && init.body && /pokemons/.test(init.body.toString())
+  //     ? "pokemons"
+  //     : "pokemon";
+  // const secound = requestName == "pokemons" ? 1 : 3;
+  // await sleep(1000 * secound);
   return fetch(input, init);
 };
 
