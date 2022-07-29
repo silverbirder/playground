@@ -3,6 +3,7 @@ import ReactDOM from "react-dom/client";
 import App from "./App";
 import { Provider } from "urql";
 import { client } from "./graphql-client/client";
+import { BrowserRouter } from "react-router-dom";
 
 const root = ReactDOM.createRoot(
   document.getElementById("root") as HTMLElement
@@ -10,8 +11,10 @@ const root = ReactDOM.createRoot(
 
 root.render(
   <React.StrictMode>
-    <Provider value={client}>
-      <App />
-    </Provider>
+    <BrowserRouter>
+      <Provider value={client}>
+        <App />
+      </Provider>
+    </BrowserRouter>
   </React.StrictMode>
 );
