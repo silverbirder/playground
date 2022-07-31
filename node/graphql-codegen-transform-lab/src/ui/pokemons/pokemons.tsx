@@ -1,9 +1,9 @@
 import { Pokemon } from "../../graphql-client/generated/graphql";
 import withSuspense from "../withSuspense";
-import { usePokemonsQuery } from "./hooks/usePokemonsQuery";
+import { usePokemonsQueryWrap } from "./hooks/usePokemonsQueryWrap";
 
 const PokemonsComponent = () => {
-  const { pokemons } = usePokemonsQuery();
+  const { pokemons } = usePokemonsQueryWrap();
 
   return (
     <ul>

@@ -8,3 +8,4 @@ generates:
       - "typescript-operations"
       - "typescript-document-nodes"
       - "named-operations-object"
+      - "typescript-urql"

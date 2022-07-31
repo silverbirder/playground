@@ -1,8 +1,8 @@
 import withSuspense from "../withSuspense";
-import { usePokemonQuery } from "./hooks/usePokemonQuery";
+import { usePokemonQueryWrap } from "./hooks/usePokemonQueryWrap";
 
 const PokemonComponent = () => {
-  const { pokemon } = usePokemonQuery();
+  const { pokemon } = usePokemonQueryWrap();
 
   return (
     pokemon && (

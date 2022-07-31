@@ -1,8 +1,6 @@
-import { useQuery } from "urql";
 import {
   Pokemon,
-  Pokemons,
-  PokemonsQuery,
+  usePokemonsQuery,
 } from "../../../graphql-client/generated/graphql";
 
 const transform = (
@@ -21,8 +19,8 @@ const transform = (
   return newPokemons;
 };
 
-export const usePokemonsQuery = () => {
-  const result = useQuery<PokemonsQuery>({ query: Pokemons });
+export const usePokemonsQueryWrap = () => {
+  const result = usePokemonsQuery();
   const [query] = result;
   const { data, fetching, error } = query;
   return { pokemons: transform(data?.pokemons), fetching, error };
