@@ -1,0 +1,10 @@
+overwrite: true
+schema: "../**/schema.*.graphql"
+documents: "../**/document.*.graphql"
+generates:
+  index.ts:
+    plugins:
+      - "typescript"
+      - "typescript-operations"
+      - "typescript-document-nodes"
+      - "named-operations-object"

@@ -1,0 +1,13 @@
+query Pokemons {
+  pokemons(limit: 10) {
+    id
+    name
+  }
+}
+
+query Pokemon {
+  pokemon(id: "001") {
+    id
+    name
+  }
+}
