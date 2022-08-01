@@ -83,3 +83,10 @@ create packages.
 ```
 npm init -w packages/graphql-codegen
 ```
+
+install local packages to local packages
+
+
+```
+npm install @graphql-client-di/graphql-client -w @graphql-client-di/ui
+```

@@ -8,12 +8,17 @@
     "lint": "eslint *.ts*"
   },
   "devDependencies": {
+    "@graphql-client-di/eslint-config-custom": "*",
+    "@graphql-client-di/tsconfig": "*",
     "@types/react": "^17.0.37",
     "@types/react-dom": "^17.0.11",
     "eslint": "^7.32.0",
-    "@graphql-client-di/eslint-config-custom": "*",
     "react": "^17.0.2",
-    "@graphql-client-di/tsconfig": "*",
     "typescript": "^4.5.2"
+  },
+  "dependencies": {
+    "@graphql-client-di/graphql-client": "^0.0.0",
+    "@graphql-client-di/graphql-codegen": "^0.0.0",
+    "graphql-tag": "^2.12.6"
   }
 }
