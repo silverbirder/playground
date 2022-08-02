@@ -1,3 +1,3 @@
-import { createClient } from "urql";
+import { Client } from "urql";
 
-export { createClient };
+export { Client };

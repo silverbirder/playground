@@ -14,8 +14,8 @@ export const Button = () => {
       }
     `,
   });
-  const { data, fetching, error } = result;
-  console.log({ data, fetching, error });
+  const { data, fetching } = result;
+  console.log({ data, fetching });
 
   return <button>Boop</button>;
 };

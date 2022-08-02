@@ -1,5 +1,5 @@
-import { createClient } from "./client";
+import { Client } from "./client";
 import { useQuery } from "./useQuery";
 import { Provider } from "./provider";
 
-export { createClient, useQuery, Provider };
+export { Client, useQuery, Provider };
