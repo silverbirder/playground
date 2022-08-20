@@ -1,9 +1,10 @@
 import { useMemo } from "react";
-import { ServiceType, Transport } from "@bufbuild/protobuf";
+import { ServiceType } from "@bufbuild/protobuf";
 import {
   createConnectTransport,
   createPromiseClient,
   PromiseClient,
+  Transport,
 } from "@bufbuild/connect-web";
 
 // This transport is going to be used throughout the app
