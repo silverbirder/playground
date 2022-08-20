@@ -24,7 +24,11 @@ func (s *GreetServer) Greet(
     res := connect.NewResponse(&greetv1.GreetResponse{
         Greeting: fmt.Sprintf("Hello, %s!", req.Msg.Name),
     })
+	
     res.Header().Set("Greet-Version", "v1")
+    res.Header().Set("Access-Control-Allow-Headers", "*")
+    res.Header().Set("Access-Control-Allow-Origin", "*")
+    res.Header().Set( "Access-Control-Allow-Methods","GET, POST, PUT, DELETE, OPTIONS")
     return res, nil
 }
 

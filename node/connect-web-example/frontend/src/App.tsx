@@ -4,7 +4,7 @@ import "./App.css";
 import { createConnectTransport, Interceptor } from "@bufbuild/connect-web";
 
 // Import service definition that you want to connect to.
-import { ElizaService } from "../gen/buf/connect/demo/eliza/v1/eliza_connectweb";
+import { GreetService } from "../gen/greet/v1/greet_connectweb";
 import { useClient } from "./client";
 
 const logger: Interceptor = (next) => async (req) => {
@@ -27,12 +27,12 @@ const logger: Interceptor = (next) => async (req) => {
 // The transport defines what type of endpoint we're hitting.
 // In our example we'll be communicating with a Connect endpoint.
 const transport = createConnectTransport({
-  baseUrl: "https://demo.connect.build",
+  baseUrl: "http://localhost:8080",
   interceptors: [logger],
 });
 
 function App() {
-  const client = useClient(ElizaService, transport);
+  const client = useClient(GreetService, transport);
   const [inputValue, setInputValue] = useState("");
   const [messages, setMessages] = useState<
     {
@@ -42,13 +42,6 @@ function App() {
   >([]);
   return (
     <>
-      <ol>
-        {messages.map((msg, index) => (
-          <li key={index}>
-            {`${msg.fromMe ? "ME:" : "ELIZA:"} ${msg.message}`}
-          </li>
-        ))}
-      </ol>
       <form
         onSubmit={async (e) => {
           e.preventDefault();
@@ -63,14 +56,13 @@ function App() {
               message: inputValue,
             },
           ]);
-          const response = await client.say({
-            sentence: inputValue,
-          });
+          const response = await client.greet({ name: "Bob" });
+
           setMessages((prev) => [
             ...prev,
             {
               fromMe: false,
-              message: response.sentence,
+              message: response.greeting,
             },
           ]);
         }}
