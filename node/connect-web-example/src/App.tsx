@@ -1,25 +1,38 @@
 import { useState } from "react";
 import "./App.css";
 
-import {
-  createConnectTransport,
-  createPromiseClient,
-} from "@bufbuild/connect-web";
+import { createConnectTransport, Interceptor } from "@bufbuild/connect-web";
 
 // Import service definition that you want to connect to.
-import { ElizaService } from "@buf/bufbuild_connect-web_bufbuild_eliza/buf/connect/demo/eliza/v1/eliza_connectweb";
+import { ElizaService } from "../gen/buf/connect/demo/eliza/v1/eliza_connectweb";
+import { useClient } from "./client";
 
+const logger: Interceptor = (next) => async (req) => {
+  const res = await next(req);
+  if (res.stream) {
+    // to intercept streaming response messages, we override
+    // the read() method of the response
+    return {
+      ...res,
+      async read() {
+        console.log("message received");
+        return await res.read();
+      },
+    };
+  } else {
+    console.log("message:", res.message);
+    return res;
+  }
+};
 // The transport defines what type of endpoint we're hitting.
 // In our example we'll be communicating with a Connect endpoint.
 const transport = createConnectTransport({
   baseUrl: "https://demo.connect.build",
+  interceptors: [logger],
 });
 
-// Here we make the client itself, combining the service
-// definition with the transport.
-const client = createPromiseClient(ElizaService, transport);
-
 function App() {
+  const client = useClient(ElizaService, transport);
   const [inputValue, setInputValue] = useState("");
   const [messages, setMessages] = useState<
     {
