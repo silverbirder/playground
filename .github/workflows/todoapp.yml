@@ -28,6 +28,7 @@ jobs:
           # To pin external dependencies, you can use `project update github.com/[package-source]@v[n]`
           working-directory: ./misc/dagger-todoapp
           cmds: |
+            project init
             project update
             do deploy
         env:
