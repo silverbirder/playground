@@ -1,0 +1,9 @@
+query Donuts {
+  misterdonutCollection {
+    edges {
+      node {
+        id
+      }
+    }
+  }
+}
