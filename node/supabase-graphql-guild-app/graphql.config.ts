@@ -26,7 +26,7 @@ const graphqlConfig: IGraphQLConfig = {
         "generated/schema.graphql": {
           plugins: ["schema-ast"],
         },
-        "generated/mockHandler.ts": {
+        "generated/msw.ts": {
           plugins: ["typescript", "typescript-operations", "typescript-msw"],
         },
       },
