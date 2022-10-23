@@ -1,0 +1,24 @@
+<html>
+
+<head>
+    <script src="./~partytown/partytown.js"></script>
+</head>
+
+<body>
+    <div id="text">Hello</div>
+    <button id="button">Click</button>
+
+    <script type="text/partytown">
+        const button = document.querySelector('#button');
+        const text = document.querySelector('#text');
+
+        button.addEventListener('click', () => {
+            for (let i = 0; i < 10000000; i++) {
+                //empty loop to simulate a long-running process
+            }
+            text.innerHTML = 'World';
+        });
+    </script>
+</body>
+
+</html>

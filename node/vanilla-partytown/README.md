@@ -1,0 +1,3 @@
+```
+$ npx partytown copylib ~partytown
+```
