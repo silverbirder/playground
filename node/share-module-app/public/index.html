@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8" />
+
+  <!-- 
+    https://generator.jspm.io/#U2VhYGBiDs0rySzJSU1hKEpNTC7RTcnPdTC00DPSM9BPzslMzSuBiEPFAHimvF0zAA
+    importmapは、jspmの生成物をそのまま使った.
+
+    skypackでreact18の公開がなかった...
+    https://cdn.skypack.dev/react@18.0.0
+   -->
+  <script type="importmap">
+    {
+      "imports": {
+        "react": "https://ga.jspm.io/npm:react@18.2.0/dev.index.js",
+        "react-dom/client": "https://ga.jspm.io/npm:react-dom@18.2.0/dev.client.js"
+      },
+      "scopes": {
+        "https://ga.jspm.io/": {
+          "process": "https://ga.jspm.io/npm:@jspm/core@2.0.0-beta.27/nodelibs/browser/process.js",
+          "react-dom": "https://ga.jspm.io/npm:react-dom@18.2.0/dev.index.js",
+          "scheduler": "https://ga.jspm.io/npm:scheduler@0.23.0/dev.index.js"
+        }
+      }
+    }
+  </script>
+  <script type="module" src="./content.mjs"></script>
+  <script type="module" src="./search.mjs"></script>
+</head>
+
+<body>
+  <div id="root"></div>
+</body>
+
+</html>
