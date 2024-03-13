@@ -1,0 +1,18 @@
+{
+  "extends": "./tsconfig",
+  "compilerOptions": {
+    "module": "NodeNext",
+    "moduleResolution": "NodeNext",
+    "jsx": "react-jsx",
+    "plugins": [
+      {
+        "transform": "the-real-doctest/transformers/doctest-runner",
+        "transformProgram": true
+      },
+      {
+        "transform": "the-real-doctest/transformers/import-remover",
+        "transformProgram": true
+      }
+    ]
+  }
+}

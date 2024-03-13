@@ -1,0 +1,28 @@
+{
+  "name": "doctest-sample-app",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "jest",
+    "doctest": "doctest-ts --jest src/hasFoo.ts",
+    "the-real-doctest": "the-real-doctest test ./src/nsum.ts"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@types/jest": "^29.5.12",
+    "doctest-ts": "^0.5.0",
+    "jest": "^29.7.0",
+    "the-real-doctest": "^0.1.2",
+    "ts-jest": "^29.1.2",
+    "ts-node": "^10.9.2",
+    "ts-patch": "^3.1.2",
+    "tsdoc-testify": "^0.0.3",
+    "typescript": "^5.4.2"
+  },
+  "the-real-doctest": {
+    "runCommand": "npx ts-node --project tsconfig.doctest.json --compiler ts-patch/compiler"
+  }
+}
