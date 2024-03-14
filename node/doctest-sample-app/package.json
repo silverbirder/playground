@@ -6,7 +6,8 @@
   "scripts": {
     "test": "jest",
     "doctest": "doctest-ts --jest src/hasFoo.ts",
-    "the-real-doctest": "the-real-doctest test ./src/nsum.ts"
+    "the-real-doctest": "the-real-doctest test ./src/nsum.ts",
+    "tsdoc-testify": "tsdoc-testify --filepath ./src/sub.ts"
   },
   "keywords": [],
   "author": "",
